@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="eventos.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <a-scene cursor="rayOrigin: mouse" physics="debug gravity: -9.8">
+      
+      <!-- Camara, cielo, plano y luces -->
+
+      <a-camera 
+   
+      kinematic-body 
+      camera="" 
+      position="-8.28796 1 14.87841" 
+      rotation="0 0 0" 
+      look-controls="" 
+      wasd-controls="" 
+      data-aframe-inspector-original-camera="">
+      </a-camera>
+  
+      <a-sky
+        src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/mjmj2023_realistic_mars_horizont_photography_dfdca4c1-8543-433d-aac3-408625267b49.png?v=1706027677015">
+      </a-sky>
+
+      <a-plane
+        position="0 -1.31225 -4"
+        rotation="-90 0 0"
+        width="4"
+        height="4"
+        src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/mjmj2023_mars_soil_texture_968fd812-1e5e-4fd0-83b4-2662b4270e20.png?v=1706009475072"
+        material=""
+        geometry=""
+        scale="100 100 100">
+      </a-plane>
+
+      
+      <!-- Objetos contenedor chatarra-->
+
+      <a-entity id="rig" movement-controls kinematic-body foo>
+        <a-entity id="camera" camera position="0 1.6 0" look-controls></a-entity>
+      </a-entity>
+      
+      <!-- Paredes -->
+      <a-box static-body scale="1.000 0.500 1.000" position="-5.383 -0.392 -7.795" src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/mjmj2023_texture_abit_worn_industrial_dark_metal_wall_101da1db-a575-45c3-bce8-2d9566ced743.png?v=1706274738203" width="8" height="4" depth="0.5" click-handler-vertedero></a-box>
+      <a-box static-body scale="1.000 0.500 1.000" position="-5.383 -0.392 -16" src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/mjmj2023_texture_abit_worn_industrial_dark_metal_wall_101da1db-a575-45c3-bce8-2d9566ced743.png?v=1706274738203" width="8" height="4" depth="0.5" click-handler-vertedero></a-box>
+      
+      <a-box static-body scale="1.000 0.500 1.000" position="-9.393 -0.392 -11.985" rotation="0 90 0" src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/mjmj2023_texture_abit_worn_industrial_dark_metal_wall_101da1db-a575-45c3-bce8-2d9566ced743.png?v=1706274738203" width="8" height="4" depth="0.5" click-handler-vertedero></a-box>
+      <a-box static-body scale="1.000 0.500 1.000" position="-1.511 -0.392 -11.985" rotation="0 90 0" src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/mjmj2023_texture_abit_worn_industrial_dark_metal_wall_101da1db-a575-45c3-bce8-2d9566ced743.png?v=1706274738203" width="8" height="4" depth="0.5" click-handler-vertedero></a-box>
+      <!-- Objetos -->
+      <a-box id="cubochatarra" dynamic-body scale="0.21 0.36 3.83" src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/ren.rgb_color.0001.jpg?v=1706276899307" position="-5.51883 6 -10.57584" rotation="0 57.529999999999994 0" width="8" height="4" depth="0.5"></a-box>
+      <!-- Suelo -->
+      <a-box static-body position="-5.396 -0.500 -11.689" src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/mjmj2023_texture_of_worn_and_rusted_industrial_metal_flooring_b7317d1d-8566-452e-b302-f5e8f421a8fc.png?v=1706608332505" width="8" height="0.5" depth="8" click-handler-vertedero></a-box>
+      
+      <!-- Esferas -->
+      <a-sphere id="esfera1" dynamic-body position="-4.588 3.778 -11.109" src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/mjmj2023_A_texture_of_weathered_white_paint_over_metal_hints_of_e7ceefea-9581-43a2-95e1-b323077c47f5.png?v=1706521100545" radius="1" mass='0.010' force-pushable grab></a-sphere>
+      <a-sphere id="esfera2" dynamic-body position="-5.982 1.387 -11.10" src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/mjmj2023_A_texture_of_weathered_white_paint_over_metal_hints_of_e7ceefea-9581-43a2-95e1-b323077c47f5.png?v=1706521100545" radius="1" force-pushable grab></a-sphere>
+      <a-sphere id="esfera3" dynamic-body position="-4.588 5.778 -11.109" src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/Captura.PNG?v=1706529271801" scale="0.5 0.5 0.5" radius="1" force-pushable grab></a-sphere>
+
+      
+
+      <a-entity
+        gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/m2020_zcam_--_rose_river_falls_abrasion_sol_455.glb?v=1705996364385"
+        scale="50 50 50"
+        position="-31.52 4.5204 0">
+      </a-entity>
+      
+      <a-entity
+        gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/m2020_zcam_--_rose_river_falls_abrasion_sol_455.glb?v=1705996364385"
+        scale="50 50 50"
+        position="13.75582 4.85161 5.48244"
+        rotation="0 180 0">
+      </a-entity>
+
+      <a-entity
+        id="perseverance"
+        gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/perseverance_-_nasa_mars_landing_2021.glb?v=1706002970172"
+        scale="0.5 0.5 0.5"
+        position="0.91984 0.2523 16.10522"
+        rotation="0 -53.95 0"
+        click-handler-perseverance>
+      </a-entity>
+      
+      <a-box 
+        id="cartel"
+        position="0.707 1.518 -2.462" 
+        rotation="0 -151.9 0" src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/shavarelogo.png?v=1706174805396" 
+        width="1" 
+        height="1" 
+        depth="1" 
+        material="" 
+        geometry="" 
+        scale="0.07 0.5 2"
+        click-handler-cartel>
+      </a-box>
+
+      <a-entity
+        id="estacion"
+        gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/base_yrs.glb?v=1706010057615"
+        scale="0.5 0.5 0.5"
+        position="3.70231 -0.08949 -0.09638"
+        rotation="0 -151.01 0"
+        click-handler-estacion>
+      </a-entity>
+
+      <a-entity
+        id="navecargo"
+        sound="src: url(images/nave.mp3); on: click; volume: 1.0" 
+        gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/spaceship_in_other_planet.glb?v=1706012768593"
+        scale="0.5 0.5 0.5"
+        position="-18.38542 -0.47419 -9.25624"
+        rotation="0 45 0"
+        click-handler-navecargo>
+      </a-entity>
+
+      <a-entity 
+        gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/jaxa_iss_int-ball.glb?v=1706027921976"
+        sound="src: url(images/dron.mp3); on: click; volume: 1.0"
+        id="centinela1" scale="5 5 5" 
+        position="-12.6797 2.87062 7.41231" 
+        rotation="0 53.86824992848784 0" 
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" 
+        click-handler-centinela1="">
+      </a-entity>
+
+      <a-entity
+        id="centinela2"
+        sound="src: url(images/dron.mp3); on: click; volume: 1.0" 
+        rotation="0 0 0"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+        click-handler-centinela2>
+        <a-sphere     
+          position="5 7 0"
+          scale="5 5 5"
+          gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/jaxa_iss_int-ball.glb?v=1706027921976"
+          material=""
+          geometry=""
+          rotation="0 180 0">
+        </a-sphere>
+      </a-entity>
+      
+      <a-entity 
+          gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/futuristic_building.glb?v=1706030023884" 
+          id="laboratorio"
+          scale="0.1 0.1 0.1" 
+          position="-15.40559 0 9.58632" 
+          rotation="0 -20 0"
+          click-handler-laboratorio>
+      </a-entity>
+
+      <a-entity 
+          gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/sci-fi_tower.glb?v=1706184474542" 
+          id="laboratorio" 
+          scale="0.005 0.005 0.005" 
+          position="-21.43475 -0.51189 15.19153" 
+          rotation="0 -64.15 0" 
+          click-handler-torre>
+      </a-entity>
+
+      <a-entity>
+
+        <a-entity gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/space_station_dome_amazona_v2_draft.glb?v=1706185783565" id="colonia" scale="" position="-8.14975 -1.60279 87.65616" rotation="0 -64.15 0" click-handler-colonia="">
+        </a-entity>
+
+        <a-entity gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/space_station_dome_amazona_v2_draft.glb?v=1706185783565" id="colonia" scale="2 2 2" position="-13.11098 -1.67955 113.4311" rotation="0 -64.15 0" click-handler-colonia="">
+        </a-entity>
+
+        <a-entity gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/space_station_dome_amazona_v2_draft.glb?v=1706185783565" id="colonia" scale="" position="-13.111 -1.603 80.618" rotation="0 -64.15 0" click-handler-colonia="">
+        </a-entity>
+
+      </a-entity>
+
+    </a-scene>
+
+    <!-- Modal -->
+
+    <div class="modal fade" tabindex="-1" id="infoModal" aria-labelledby="infoModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="infoModalLabel">Visor</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modalBody">
+            <!-- Contenido del modal -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+  
+  </body>
+</html>
