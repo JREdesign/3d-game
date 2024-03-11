@@ -24,7 +24,7 @@
       </a-camera>
   
       <a-sky
-        src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/mjmj2023_realistic_mars_horizont_photography_dfdca4c1-8543-433d-aac3-408625267b49.png?v=1706027677015">
+        color="black">
       </a-sky>
 
       <a-plane
@@ -32,7 +32,7 @@
         rotation="-90 0 0"
         width="4"
         height="4"
-        src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/mjmj2023_mars_soil_texture_968fd812-1e5e-4fd0-83b4-2662b4270e20.png?v=1706009475072"
+        color="gray"
         material=""
         geometry=""
         scale="100 100 100">
@@ -62,117 +62,21 @@
       <a-sphere id="esfera3" dynamic-body position="-4.588 5.778 -11.109" src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/Captura.PNG?v=1706529271801" scale="0.5 0.5 0.5" radius="1" force-pushable grab></a-sphere>
 
       
-
-      <a-entity
-        gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/m2020_zcam_--_rose_river_falls_abrasion_sol_455.glb?v=1705996364385"
-        scale="50 50 50"
-        position="-31.52 4.5204 0">
-      </a-entity>
-      
-      <a-entity
-        gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/m2020_zcam_--_rose_river_falls_abrasion_sol_455.glb?v=1705996364385"
-        scale="50 50 50"
-        position="13.75582 4.85161 5.48244"
-        rotation="0 180 0">
-      </a-entity>
-
-      <a-entity
-        id="perseverance"
-        gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/perseverance_-_nasa_mars_landing_2021.glb?v=1706002970172"
-        scale="0.5 0.5 0.5"
-        position="0.91984 0.2523 16.10522"
-        rotation="0 -53.95 0"
-        click-handler-perseverance>
-      </a-entity>
-      
-      <a-box 
-        id="cartel"
-        position="0.707 1.518 -2.462" 
-        rotation="0 -151.9 0" src="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/shavarelogo.png?v=1706174805396" 
-        width="1" 
-        height="1" 
-        depth="1" 
-        material="" 
-        geometry="" 
-        scale="0.07 0.5 2"
-        click-handler-cartel>
-      </a-box>
-
-      <a-entity
-        id="estacion"
-        gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/base_yrs.glb?v=1706010057615"
-        scale="0.5 0.5 0.5"
-        position="3.70231 -0.08949 -0.09638"
-        rotation="0 -151.01 0"
-        click-handler-estacion>
-      </a-entity>
-
-      <a-entity
-        id="navecargo"
-        sound="src: url(images/nave.mp3); on: click; volume: 1.0" 
-        gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/spaceship_in_other_planet.glb?v=1706012768593"
-        scale="0.5 0.5 0.5"
-        position="-18.38542 -0.47419 -9.25624"
-        rotation="0 45 0"
-        click-handler-navecargo>
-      </a-entity>
+  
 
       <a-entity 
-        gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/jaxa_iss_int-ball.glb?v=1706027921976"
-        sound="src: url(images/dron.mp3); on: click; volume: 1.0"
-        id="centinela1" scale="5 5 5" 
-        position="-12.6797 2.87062 7.41231" 
-        rotation="0 53.86824992848784 0" 
-        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" 
-        click-handler-centinela1="">
+        id="studio" 
+        sound="" 
+        gltf-model="https://cdn.glitch.global/ca1c16c1-9540-4611-b027-31e90d33a5a0/news_broadcast_studio_set_vr_ready.glb?v=1710178748189" 
+        scale="2 2 2" 
+        position="0.24669 -0.474 16.61676" 
+        rotation="" click-handler-studio="">
       </a-entity>
 
-      <a-entity
-        id="centinela2"
-        sound="src: url(images/dron.mp3); on: click; volume: 1.0" 
-        rotation="0 0 0"
-        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
-        click-handler-centinela2>
-        <a-sphere     
-          position="5 7 0"
-          scale="5 5 5"
-          gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/jaxa_iss_int-ball.glb?v=1706027921976"
-          material=""
-          geometry=""
-          rotation="0 180 0">
-        </a-sphere>
-      </a-entity>
-      
-      <a-entity 
-          gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/futuristic_building.glb?v=1706030023884" 
-          id="laboratorio"
-          scale="0.1 0.1 0.1" 
-          position="-15.40559 0 9.58632" 
-          rotation="0 -20 0"
-          click-handler-laboratorio>
-      </a-entity>
 
-      <a-entity 
-          gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/sci-fi_tower.glb?v=1706184474542" 
-          id="laboratorio" 
-          scale="0.005 0.005 0.005" 
-          position="-21.43475 -0.51189 15.19153" 
-          rotation="0 -64.15 0" 
-          click-handler-torre>
-      </a-entity>
+     
 
-      <a-entity>
 
-        <a-entity gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/space_station_dome_amazona_v2_draft.glb?v=1706185783565" id="colonia" scale="" position="-8.14975 -1.60279 87.65616" rotation="0 -64.15 0" click-handler-colonia="">
-        </a-entity>
-
-        <a-entity gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/space_station_dome_amazona_v2_draft.glb?v=1706185783565" id="colonia" scale="2 2 2" position="-13.11098 -1.67955 113.4311" rotation="0 -64.15 0" click-handler-colonia="">
-        </a-entity>
-
-        <a-entity gltf-model="https://cdn.glitch.global/0751b5cb-8c60-45a1-9e63-95110e0c79aa/space_station_dome_amazona_v2_draft.glb?v=1706185783565" id="colonia" scale="" position="-13.111 -1.603 80.618" rotation="0 -64.15 0" click-handler-colonia="">
-        </a-entity>
-
-      </a-entity>
 
     </a-scene>
 
