@@ -49,6 +49,32 @@ const AFrameScene = () => {
           alt="Avatar-Moha"
         ></a-entity>
 
+        <a-entity id="TV-1" 
+          geometry="depth: 0.01; height: 1.71; width: 3.1" 
+          position="-5.54414 1.414 -1.05" 
+          rotation="0 59.99999999999999 0" 
+          material="transparent: true; src: https://cdn.glitch.global/8706468d-4e4a-413e-bce6-5e210b1fc903/Image20240315094940.jpg?v=1710492722845">
+        </a-entity>
+        <a-entity id="TV-2" 
+          geometry="depth: 0.01; width: 3.1; height: 1.71; skipCache: true" 
+          position="-1.04996 1.424 -5.54001" 
+          rotation="0 -150.03600000000003 0"
+          material="transparent: true; src: https://cdn.glitch.global/8706468d-4e4a-413e-bce6-5e210b1fc903/Image20240315094940.jpg?v=1710492722845">
+        </a-entity>
+        <a-entity id="TV-3" 
+          geometry="skipCache: true; depth: 0.01; height: 1.62; width: 2.95; segmentsHeight: 5; segmentsWidth: 5" 
+          position="-5.70752 1.103 2.54339" 
+          rotation="0 -44.72 0" visible="" 
+          material="src: https://cdn.glitch.global/8706468d-4e4a-413e-bce6-5e210b1fc903/Image20240315094940.jpg?v=1710492722845">
+        </a-entity>
+        <a-entity id="Balltoy" 
+          animation-mixer="" 
+          gltf-model="https://cdn.glitch.global/8706468d-4e4a-413e-bce6-5e210b1fc903/balltoy.glb?v=1710513944202" 
+          position="-0.34056 0.97424 0.35578" rotation="0 55.10020524214101 0" 
+          scale="0.25 0.25 0.25">
+        </a-entity>
+
+
         {currentQuestion && (
           <>
             <a-text 
