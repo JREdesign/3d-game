@@ -1,10 +1,8 @@
-// questions.js:
-import express from "express";
-import { QuestionModel } from "../models/Questions.js";
+const express = require('express');
+const { QuestionModel } = require('../models/Questions'); // Asegúrate de que la ruta sea correcta
 
 const router = express.Router();
 
-// Endpoint para obtener todas las preguntas
 router.get("/", async (req, res) => {
   try {
     const questions = await QuestionModel.find({});
@@ -14,12 +12,13 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Endpoint para crear una nueva pregunta
 router.post("/", async (req, res) => {
-  const { text, options } = req.body;
+  const { text, options, level } = req.body;
+
   const question = new QuestionModel({
     text,
     options,
+    level,
   });
 
   try {
@@ -30,7 +29,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Endpoint para obtener una pregunta especÃ­fica por su ID
 router.get("/:questionId", async (req, res) => {
   try {
     const question = await QuestionModel.findById(req.params.questionId);
@@ -43,7 +41,6 @@ router.get("/:questionId", async (req, res) => {
   }
 });
 
-// Endpoint para actualizar una pregunta por su ID
 router.patch("/:questionId", async (req, res) => {
   try {
     const updatedQuestion = await QuestionModel.findByIdAndUpdate(
@@ -60,12 +57,9 @@ router.patch("/:questionId", async (req, res) => {
   }
 });
 
-// Endpoint para eliminar una pregunta por su ID
 router.delete("/:questionId", async (req, res) => {
   try {
-    const deletedQuestion = await QuestionModel.findByIdAndDelete(
-      req.params.questionId
-    );
+    const deletedQuestion = await QuestionModel.findByIdAndDelete(req.params.questionId);
     if (!deletedQuestion) {
       return res.status(404).json({ message: "Question not found" });
     }
@@ -75,4 +69,4 @@ router.delete("/:questionId", async (req, res) => {
   }
 });
 
-export { router as questionsRouter };
+module.exports = { questionsRouter: router };

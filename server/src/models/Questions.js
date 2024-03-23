@@ -1,7 +1,6 @@
-// Questions.js:
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
-const questionSchema = mongoose.Schema({
+const questionSchema = new mongoose.Schema({
   text: {
     type: String,
     required: true,
@@ -16,29 +15,16 @@ const questionSchema = mongoose.Schema({
         type: Boolean,
         required: true,
       }
-    },
-    {
-      text: {
-        type: String,
-        required: true,
-      },
-      isCorrect: {
-        type: Boolean,
-        required: true,
-      }
-    },
-    {
-      text: {
-        type: String,
-        required: true,
-      },
-      isCorrect: {
-        type: Boolean,
-        required: true,
-      }
     }
-  ]
-
+    // Asegúrate de tener todas las opciones aquí.
+  ],
+  level: {
+    type: Number,
+    required: true,
+    enum: [1, 2, 3],
+  }
 });
 
-export const QuestionModel = mongoose.model("Question", questionSchema);
+const QuestionModel = mongoose.model('Question', questionSchema);
+
+module.exports = { QuestionModel };
