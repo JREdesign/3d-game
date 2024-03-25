@@ -5,16 +5,17 @@ const AFrameScene = () => {
   const [questions, setQuestions] = useState([]); // Estado para almacenar las preguntas
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(-1); // Estado para almacenar el índice de la pregunta actual
   const [score, setScore] = useState(0); // Estado para almacenar el marcador
-  const [message, setMessage] = useState("¡Bienvenido a Super Quiz TV!"); // Estado para el mensaje de bienvenida
+  const [message, setMessage] = useState("¡Bienvenido a SuperQuizTV!"); // Estado para el mensaje de bienvenida
   const [messageColor, setMessageColor] = useState("#FFFFFF"); // Estado para el color del mensaje
   const [buttonText, setButtonText] = useState("Iniciar el juego"); // Estado para el texto del botón
-  const [buttonColor, setButtonColor] = useState("#00FF00"); // Estado para el color del botón
+  // Se mantiene el color del botón de inicio siempre en #1cba6d
+  const [buttonColor] = useState("#1cba6d"); // Color fijo para el botón de inicio
   const [showThanksMessage, setShowThanksMessage] = useState(false); // Estado para mostrar el mensaje de agradecimiento
   const [resetGame, setResetGame] = useState(false);
 
   useEffect(() => {
     // Reproducir el audio al cargar la página
-    const audio = new Audio("../audio/concurso.mp3");
+    const audio = new Audio("../audio/superquiztv-sintonia.mp3");
     audio.play();
 
     audio.addEventListener("ended", () => {
@@ -77,18 +78,18 @@ const AFrameScene = () => {
       setShowThanksMessage(false);
       setCurrentQuestionIndex(-1);
       setScore(0);
-      setMessage("¡Bienvenido a Super Quiz TV!");
+      setMessage("¡Bienvenido a SuperQuizTV!");
       setButtonText("Iniciar el juego");
-      setButtonColor("#00FF00");
+      // No es necesario actualizar el color del botón aquí porque ya está fijado a #1cba6d
       setResetGame(!resetGame); // Cambiar el estado resetGame para reiniciar el juego
     }, 3000); // La animación dura 3 segundos
   };
 
   // Función para iniciar el juego
   const handleStartGame = () => {
-    // Cambiar el texto y el color del botón
+    // Cambiar el texto del botón
     setButtonText("Salir");
-    setButtonColor("#FF0000"); // Color rojo
+    // No es necesario cambiar el color del botón aquí porque ya está fijado a #1cba6d
     // Pasar a la primera pregunta
     setCurrentQuestionIndex(0);
     // Limpiar el mensaje de bienvenida
@@ -134,21 +135,19 @@ const AFrameScene = () => {
           scale="4.53 3.84 1"
         ></a-image>
 
-        {/* Mostrar mensaje de despedida */}
         {showThanksMessage && (
           <a-text
-            value="Gracias por participar y hasta la próxima."
+            value="¡Gracias por participar y hasta la próxima.!"
             position="4 5 8.7"
             rotation="0 180 0"
             width="12"
-            color="#FFD700"
+            color="#24cb7a"
             font="Roboto-Regular-msdf.json"
           ></a-text>
         )}
 
         {currentQuestionIndex === -1 && (
           <>
-            {/* Mensaje de bienvenida */}
             <a-text
               font="Roboto-Regular-msdf.json"
               value={message}
@@ -157,10 +156,9 @@ const AFrameScene = () => {
               width="12"
               color={messageColor}
             ></a-text>
-            {/* Botón de inicio del juego */}
             <a-box
               position="0 3 8.7"
-              color={buttonColor}
+              color={buttonColor} // El color se mantiene en #1cba6d
               width="4"
               height="0.5"
               depth="0.1"
@@ -173,7 +171,6 @@ const AFrameScene = () => {
               position="0 3 8.65"
               width="8"
               align="center"
-              text=""
               rotation="0 180 0"
             ></a-text>
           </>
@@ -181,7 +178,6 @@ const AFrameScene = () => {
 
         {!allQuestionsAnswered && currentQuestionIndex !== -1 && (
           <>
-            {/* Mostrar la pregunta y las opciones */}
             <a-text
               font="Roboto-Regular-msdf.json"
               value={currentQuestion.text}
@@ -195,7 +191,7 @@ const AFrameScene = () => {
                 <a-box
                   position={`0 ${4.5 - index * 0.7} 8.7`}
                   rotation="0 180 0"
-                  color="#4CC3D9"
+                  color="#65087c"
                   width="4"
                   height="0.5"
                   depth="0.1"
@@ -214,7 +210,6 @@ const AFrameScene = () => {
           </>
         )}
 
-        {/* Mostrar mensaje de respuesta */}
         {currentQuestionIndex !== -1 && !showThanksMessage && (
           <a-text
             font="Roboto-Regular-msdf.json"
@@ -226,7 +221,6 @@ const AFrameScene = () => {
           ></a-text>
         )}
 
-        {/* Mostrar marcador */}
         {currentQuestionIndex !== -1 && !showThanksMessage && (
           <a-text
             font="Roboto-Regular-msdf.json"
@@ -238,12 +232,12 @@ const AFrameScene = () => {
           ></a-text>
         )}
 
-        {/* Botón para salir */}
+        {/* Botón para salir. Nota: Este botón solo se muestra cuando hay una pregunta en curso, no afecta el botón de inicio */}
         {currentQuestionIndex !== -1 && !showThanksMessage && (
           <>
             <a-box
               position="5 1.5 8.7"
-              color="#FF0000"
+              color="#FF0000" // Este es el botón de salida, no el de inicio
               width="2"
               height="0.5"
               depth="0.1"
@@ -256,7 +250,6 @@ const AFrameScene = () => {
               position="5 1.5 8.65"
               width="8"
               align="center"
-              text=""
               rotation="0 180 0"
             ></a-text>
           </>
@@ -267,3 +260,4 @@ const AFrameScene = () => {
 };
 
 export default AFrameScene;
+
