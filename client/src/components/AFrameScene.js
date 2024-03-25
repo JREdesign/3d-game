@@ -22,14 +22,6 @@ const AFrameScene = () => {
       return () => document.body.removeChild(script);
     };
 
-    const scripts = [
-      "https://unpkg.com/aframe-extras/dist/aframe-extras.loaders.min.js",
-      "https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js",
-      "https://unpkg.com/aframe-animation-component/dist/aframe-animation-component.min.js",
-      "https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js",
-    ];
-
-    scripts.forEach(script => loadScript(script));
 
     // Reproducir el audio al cargar la página
     const audio = new Audio("../audio/superquiztv-sintonia.mp3");
@@ -283,4 +275,3 @@ const AFrameScene = () => {
 };
 
 export default AFrameScene;
-
