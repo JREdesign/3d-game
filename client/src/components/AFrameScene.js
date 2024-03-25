@@ -14,19 +14,35 @@ const AFrameScene = () => {
   const [resetGame, setResetGame] = useState(false);
 
   useEffect(() => {
+    const loadScript = (src) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      document.body.appendChild(script);
+      return () => document.body.removeChild(script);
+    };
+
+    const scripts = [
+      "https://unpkg.com/aframe-extras/dist/aframe-extras.loaders.min.js",
+      "https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js",
+      "https://unpkg.com/aframe-animation-component/dist/aframe-animation-component.min.js",
+      "https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js",
+    ];
+
+    scripts.forEach(script => loadScript(script));
+
     // Reproducir el audio al cargar la página
     const audio = new Audio("../audio/superquiztv-sintonia.mp3");
-    audio.play();
+    audio.play().catch(error => console.error("Error al reproducir el audio:", error));
 
     audio.addEventListener("ended", () => {
       const cameraEl = document.querySelector("[camera]");
       cameraEl.setAttribute("animation", {
         property: "rotation",
         to: "0 180 0",
-        dur: 2000, // Duración de la animación en milisegundos
+        dur: 2000,
       });
     });
-
     // Llamar a la función para obtener las preguntas al cargar el componente
     fetchQuestions();
   }, [resetGame]); // Agregar resetGame al array de dependencias para que se vuelva a llamar cuando resetGame cambie
@@ -113,18 +129,7 @@ const AFrameScene = () => {
           alt="Studio"
         ></a-entity>
 
-        <a-entity
-          id="Avatar-Moha"
-          scale="2 2 2"
-          animation=""
-          position="-1 0 -7.7"
-          play
-          all-model-animations
-          gltf-model="https://cdn.glitch.global/6903e30e-6840-4477-b169-010c06a93a4b/65ef07eefccb0ca0f6263b18.glb?v=1710197331276"
-          alt="Avatar-Moha"
-        ></a-entity>
-
-        <a-image
+<a-image
           src="../imagenes/pantalla4.png"
           position="0 4 8.8"
           rotation="0 180 0"
@@ -135,9 +140,27 @@ const AFrameScene = () => {
           scale="4.53 3.84 1"
         ></a-image>
 
+        <a-entity id="Camara 1" scale="2 2 2" position="9.3256 0.08489 -14.20345" gltf-model="https://cdn.glitch.global/ca1c16c1-9540-4611-b027-31e90d33a5a0/studio_camera.glb?v=1711369859669" rotation="0 -220 0"></a-entity>
+
+        <a-entity id="Camara 2" scale="2 2 2" position="0.43747 -0.055 -15.068" gltf-model="https://cdn.glitch.global/ca1c16c1-9540-4611-b027-31e90d33a5a0/studio_camera.glb?v=1711369859669" rotation="0 -180 0"></a-entity>
+
+        <a-entity id="Camara 3" scale="2 2 2" position="-8.65632 -0.08253 -15.98713" gltf-model="https://cdn.glitch.global/ca1c16c1-9540-4611-b027-31e90d33a5a0/studio_camera.glb?v=1711369859669" rotation="0 -140 0"></a-entity>
+
+        <a-entity id="Avatar-Moha" scale="2 2 2" position="-1.6294 0.23964 -8.89422" gltf-model="https://cdn.glitch.global/8706468d-4e4a-413e-bce6-5e210b1fc903/moham.glb?v=1711027006919" rotation="0 20.47 0" animation-mixer=""></a-entity>
+        
+        <a-entity id="Felipe" scale="2 2 2" rotation="0 50.566 0" position="-5.63886 0.12028 -9.65711" animation-mixer="" gltf-model="https://cdn.glitch.global/8706468d-4e4a-413e-bce6-5e210b1fc903/superfelics.glb?v=1711022921561"></a-entity>
+
+        <a-image id="TV1" src="https://cdn.glitch.global/8706468d-4e4a-413e-bce6-5e210b1fc903/Image20240315094940.jpg?v=1710492722845" width="3.2" height="1.79" material="" geometry="" position="8.97387 3.99994 -22.8838" rotation="0 -12.7 0" scale="3 3 3"></a-image>
+
+        <a-image id="TV2" src="https://cdn.glitch.global/8706468d-4e4a-413e-bce6-5e210b1fc903/Image20240315094940.jpg?v=1710492722845" width="3.2" height="1.79" material="" geometry="" position="-9.16645 4.09355 -23.03905" rotation="0 14.93 0" scale="3 3 3"></a-image>
+
+        <a-image id="TV3" src="https://cdn.glitch.global/8706468d-4e4a-413e-bce6-5e210b1fc903/Image20240315094940.jpg?v=1710492722845" width="3.2" height="1.79" material="" position="-17.28378 3.22116 -15.78981" rotation="0 88.18 0" geometry="" scale="3 3 3"></a-image>
+
+        <a-image id="TV4" src="https://cdn.glitch.global/8706468d-4e4a-413e-bce6-5e210b1fc903/Image20240315094940.jpg?v=1710492722845" width="3.2" height="1.79" material="" position="17.38511 3.91039 -10.30942" rotation="0 269.76 0" geometry="" scale="3 3 3"></a-image>
+
         {showThanksMessage && (
           <a-text
-            value="¡Gracias por participar y hasta la próxima.!"
+            value="¡Gracias por participar y hasta la próxima."
             position="4 5 8.7"
             rotation="0 180 0"
             width="12"
