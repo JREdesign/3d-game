@@ -8,17 +8,18 @@
 }
 
 body {
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background: #050016;
+  overflow: hidden;
 }
 
 .logo-container {
-  margin-top: 100px; /* Ajusta según sea necesario */
+  margin-top: 50px; /* Ajusta según sea necesario */
   text-align: center; /* Centra el logo si es más pequeño que el contenedor */
 }
 
@@ -94,23 +95,4 @@ body {
 
 .signup label:hover {
   text-decoration: underline;
-}
-
-.a-enter-vr-button,
-.a-enter-ar-button {
-  background-size: 90% 90%;
-  border: 0;
-  cursor: pointer;
-  min-width: 58px;
-  min-height: 34px;
-  padding-right: 0;
-  padding-top: 0;
-  position: fixed;
-  bottom: 10px; /* Ajusta la distancia desde la parte inferior de la pantalla */
-  right: 10px; /* Ajusta la distancia desde el borde derecho de la pantalla */
-  transition: background-color 0.05s ease;
-  -webkit-transition: background-color 0.05s ease;
-  z-index: 9999;
-  border-radius: 8px;
-  touch-action: manipulation;
 }
