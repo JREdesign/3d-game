@@ -132,7 +132,7 @@ const AFrameScene = () => {
       setScore(score + 10); // Sumar 10 puntos al marcador
     } else {
       setMessage("¡Respuesta incorrecta!");
-      setMessageColor("#5dbd5d"); // Color rojo
+      setMessageColor("#c3203b"); // Color rojo
     }
     // Pasar a la siguiente pregunta después de 2 segundos
     setTimeout(() => {
