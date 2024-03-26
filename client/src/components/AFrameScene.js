@@ -10,7 +10,7 @@ const AFrameScene = () => {
   const [message, setMessage] = useState("¡Bienvenido a Super Quiz TV!"); // Estado para el mensaje de bienvenida
   const [messageColor, setMessageColor] = useState("#FFFFFF"); // Estado para el color del mensaje
   const [buttonText, setButtonText] = useState("Iniciar el juego"); // Estado para el texto del botón
-  const [buttonColor, setButtonColor] = useState("#00FF00"); // Estado para el color del botón
+  const [buttonColor, setButtonColor] = useState("#5dbd5d"); // Estado para el color del botón
   const [showThanksMessage, setShowThanksMessage] = useState(false); // Estado para mostrar el mensaje de agradecimiento
   const [showFelicitacionMessage, setShowFelicitacionMessage] = useState(false); // Estado para mostrar el mensaje de felicitacion
   const [resetGame, setResetGame] = useState(false);
@@ -119,7 +119,7 @@ const AFrameScene = () => {
       setLevel(1);
       setMessage("¡Bienvenido a Super Quiz TV!");
       setButtonText("Iniciar el juego");
-      setButtonColor("#00FF00");
+      setButtonColor("#5dbd5d");
       setResetGame(!resetGame); // Cambiar el estado resetGame para reiniciar el juego
     }, 1500); // La animación dura 1.5 segundos
   };
@@ -128,11 +128,11 @@ const AFrameScene = () => {
   const handleAnswer = (isCorrect) => {
     if (isCorrect) {
       setMessage("¡Respuesta correcta!");
-      setMessageColor("#00FF00"); // Color verde
+      setMessageColor("#5dbd5d"); // Color verde
       setScore(score + 10); // Sumar 10 puntos al marcador
     } else {
       setMessage("¡Respuesta incorrecta!");
-      setMessageColor("#FF0000"); // Color rojo
+      setMessageColor("#5dbd5d"); // Color rojo
     }
     // Pasar a la siguiente pregunta después de 2 segundos
     setTimeout(() => {
@@ -164,7 +164,7 @@ const AFrameScene = () => {
         setLevel(1);
         setMessage("¡Bienvenido a Super Quiz TV!");
         setButtonText("Iniciar el juego");
-        setButtonColor("#00FF00");
+        setButtonColor("#5dbd5d");
         setResetGame(!resetGame); // Cambiar el estado resetGame para reiniciar el juego
       }, 1500); // La animación dura 1.5 segundos
     }
@@ -277,11 +277,11 @@ const AFrameScene = () => {
           {/* Mostrar mensaje de despedida */}
           {showThanksMessage && (
             <a-text
-              value="Gracias por participar y hasta la próxima."
+              value="¡Gracias por participar y hasta la próxima!"
               position="4 5 8.7"
               rotation="0 180 0"
               width="12"
-              color="#FFD700"
+              color="#5dbd5d"
               font="Roboto-Regular-msdf.json"
             ></a-text>
           )}
@@ -372,7 +372,7 @@ const AFrameScene = () => {
                 position={`${0.5 + level / totalLevel} 6.5 8.7`}
                 rotation="0 180 0"
                 height="0.2"
-                color="#00FF00"
+                color="#5dbd5d"
                 width={`${(level / totalLevel) * 3}`} // Ancho ajustado según el progreso del nivel
               ></a-plane>
 
@@ -407,7 +407,7 @@ const AFrameScene = () => {
                   <a-box
                     position={`0 ${4 - index * 0.7} 8.7`}
                     rotation="0 180 0"
-                    color="#4CC3D9"
+                    color="#6f2aa4"
                     width="8"
                     height="0.5"
                     depth="0.1"
