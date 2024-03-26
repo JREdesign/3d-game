@@ -274,6 +274,12 @@ const AFrameScene = () => {
             scale="3 3 3"
           ></a-image>
 
+          <a-entity id="trofeo" scale="0.3 0.3 0.3" position="0.0836 0.49034 6.28767" gltf-model="https://cdn.glitch.global/ca1c16c1-9540-4611-b027-31e90d33a5a0/trophy_cup_001.glb?v=1711493925823" rotation="0 -220 0"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 8000">
+          </a-entity>
+
+
+
           {/* Mostrar mensaje de despedida */}
           {showThanksMessage && (
             <a-text
