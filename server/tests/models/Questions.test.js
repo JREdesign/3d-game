@@ -1,21 +1,31 @@
 const mongoose = require('mongoose');
+const { MongoMemoryServer } = require('mongodb-memory-server');
 const { QuestionModel } = require('../../src/models/Questions');
 
-// Conexión a una nueva base de datos en memoria para pruebas
+let mongoServer;
+
+// Iniciar el servidor de MongoDB en memoria antes de todos los tests
 beforeAll(async () => {
-  const uri = 'mongodb://localhost:27017/tests';
-  await mongoose.connect(uri);
-});
+  mongoServer = await MongoMemoryServer.create();
+  const uri = mongoServer.getUri();
+  await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+}, 60000); // Incrementa el timeout para dar tiempo a la base de datos en memoria para iniciar
 
 // Limpiar los datos después de cada test
 afterEach(async () => {
-  await mongoose.connection.dropDatabase();
-});
+  const collections = await mongoose.connection.db.collections();
 
-// Desconectar de la base de datos después de todos los tests
+  for (let collection of collections) {
+    await collection.deleteMany({});
+  }
+}, 30000); // Incrementa el timeout si es necesario
+
+// Desconectar de la base de datos y detener el servidor en memoria después de todos los tests
 afterAll(async () => {
+  await mongoose.connection.dropDatabase();
   await mongoose.connection.close();
-});
+  await mongoServer.stop();
+}, 30000); // Incrementa el timeout si es necesario
 
 describe('QuestionModel', () => {
   it('should be defined', () => {
