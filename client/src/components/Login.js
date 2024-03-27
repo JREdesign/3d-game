@@ -37,7 +37,7 @@ const Login = () => {
         style={{ textAlign: "center", marginBottom: "20px" }}
       >
         {/* Usa el src de la imagen directamente si se encuentra en el directorio public, o usa la importación si la imagen está en tu proyecto */}
-        <img src="logo-mini.png" alt="Logo" />{" "}
+        <img src="../imagenes/logo-mini.png" alt="Logo" />{" "}
         {/* Ajusta src según sea necesario */}
       </div>
       <div className="container">

@@ -76,21 +76,8 @@ const AFrameScene = () => {
     });
 
     fetchQuestions();
-    setLevelTimer(20); // Reiniciar el temporizador del nivel al cargar nuevas preguntas
-  }, [resetGame, level]); // Agregar resetGame al array de dependencias para que se vuelva a llamar cuando resetGame cambie
-
-  useEffect(() => {
-    if (levelTimer > 0 && currentQuestionIndex !== -1) {
-      // Mantener el temporizador activo mientras se está respondiendo una pregunta
-      intervalId = setInterval(() => {
-        setLevelTimer((prevTimer) => prevTimer - 1);
-      }, 1000); // Actualizar el temporizador cada segundo
-    } else if (levelTimer === 0 && currentQuestionIndex !== -1) {
-      handleExit();
-    }
-    // Limpiar el temporizador cuando el componente se desmonte o cuando se cambie el nivel
-    return () => clearInterval(intervalId);
-  }, [levelTimer, currentQuestionIndex]);
+    setLevelTimer(20);
+  }, [resetGame, level]);
 
   // Función para iniciar el juego
   const handleStartGame = () => {
@@ -126,13 +113,40 @@ const AFrameScene = () => {
     }, 1500); // La animación dura 1.5 segundos
   };
 
+  useEffect(() => {
+    if (levelTimer > 0 && currentQuestionIndex !== -1) {
+      intervalId = setInterval(() => {
+        setLevelTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else if (levelTimer === 0 && currentQuestionIndex !== -1) {
+      if (level > 1) {
+        // Si el nivel es mayor que 1, reinicia el estado currentQuestionIndex para volver al mismo nivel
+        setScore(0); // Reiniciar el marcador
+        setCurrentQuestionIndex(0);
+        setLevelTimer(20);
+        setLevel(level);
+        clearInterval(intervalId);
+        setMessageColor("#FF0000");
+        setButtonColor("#7e2a93");
+        setMessage(`
+          ¡Se acabó el tiempo! Vuelve a intentarlo. Nivel : ${levelNumber} / ${totalLevel}`);
+        setButtonText(`Nivel : ${levelNumber} / ${totalLevel}`);
+        setButtonText("Seguir");
+        fetchQuestions();
+      } else {
+        handleExit();
+      }
+    }
+    return () => clearInterval(intervalId);
+  }, [levelTimer, currentQuestionIndex]);
+
   const handleAnswer = (isCorrect) => {
     if (isCorrect) {
       setMessage("¡ Respuesta correcta !");
       setMessageColor("#00FF00"); // Color verde
       setScore(score + 10); // Sumar 10 puntos al marcador
 
-      if (score + 10 === 20 && level < totalLevel) {
+      if (score === 20 && level < totalLevel) {
         // Detener el temporizador si el marcador llega a 20
         clearInterval(intervalId);
         setLevel(level + 1); // Pasar al siguiente nivel si el marcador es igual a 20 y no estamos en el nivel máximo
@@ -140,9 +154,11 @@ const AFrameScene = () => {
         setLevelTimer(20);
         setMessageColor("#FFFFFF");
         setButtonColor("#7e2a93");
-        setMessage("¡Muy Bien! pasas al");
-        setButtonText(`Nivel : ${levelNumber + 1} / ${totalLevel}`);
-      } else if (score + 10 === 20 && level === totalLevel) {
+        setMessage(
+          `¡Muy Bien! pasas al Nivel : ${levelNumber + 1} / ${totalLevel}`
+        );
+        setButtonText("Seguir");
+      } else if (score === 20 && level === totalLevel) {
         setMessage("");
         setQuestions("");
         setShowThanksMessage(false);
@@ -261,21 +277,14 @@ const AFrameScene = () => {
             geometry=""
             scale="3 3 3"
           ></a-image>
-          <a-image
-            id="TV4"
-            src="https://cdn.glitch.global/8706468d-4e4a-413e-bce6-5e210b1fc903/Image20240315094940.jpg?v=1710492722845"
-            width="3.2"
-            height="1.79"
-            material=""
-            position="17.38511 3.91039 -10.30942"
-            rotation="0 269.76 0"
-            geometry=""
-            scale="3 3 3"
-          ></a-image>
-
-          <a-entity id="trofeo" scale="0.3 0.3 0.3" position="0.0836 0.49034 6.28767" gltf-model="https://cdn.glitch.global/ca1c16c1-9540-4611-b027-31e90d33a5a0/trophy_cup_001.glb?v=1711493925823" rotation="0 -220 0"
-          animation="property: rotation; to: 0 360 0; loop: true; dur: 8000">
-          </a-entity>
+          <a-entity
+            id="trofeo"
+            scale="0.3 0.3 0.3"
+            position="0.0836 0.49034 6.28767"
+            gltf-model="https://cdn.glitch.global/ca1c16c1-9540-4611-b027-31e90d33a5a0/trophy_cup_001.glb?v=1711493925823"
+            rotation="0 -220 0"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 8000"
+          ></a-entity>
 
           {/* Mostrar mensaje de despedida */}
           {showThanksMessage && (

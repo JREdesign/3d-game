@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
-import './estilos.css';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
+import "./estilos.css";
 
 const Register = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -25,8 +25,11 @@ const Register = () => {
 
   return (
     <>
-      <div className="logo-container" style={{ textAlign: 'center', marginBottom: '20px' }}>
-        <img src="logo-mini.png" alt="Logo" />
+      <div
+        className="logo-container"
+        style={{ textAlign: "center", marginBottom: "20px" }}
+      >
+        <img src="../imagenes/logo-mini.png" alt="Logo" />
       </div>
       <div className="container">
         <div className="registration form">
@@ -47,7 +50,8 @@ const Register = () => {
             <input type="submit" className="button" value="Registro" />
           </form>
           <div className="signup">
-            <span>¿Ya tienes cuenta?
+            <span>
+              ¿Ya tienes cuenta?
               {/* Usar el componente Link para la navegación interna */}
               <Link to="/">Accede al sitio</Link>
             </span>
@@ -59,7 +63,3 @@ const Register = () => {
 };
 
 export default Register;
-
-
-
-
