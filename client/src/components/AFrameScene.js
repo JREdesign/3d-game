@@ -7,10 +7,10 @@ const AFrameScene = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(-1); // Estado para almacenar el índice de la pregunta actual
   const [score, setScore] = useState(0); // Estado para almacenar el marcador
   const [level, setLevel] = useState(1); // Estado para almacenar el nivel actual
-  const [message, setMessage] = useState("¡Bienvenido a Super Quiz TV!"); // Estado para el mensaje de bienvenida
+  const [message, setMessage] = useState("¡ Bienvenido a Super Quiz TV !"); // Estado para el mensaje de bienvenida
   const [messageColor, setMessageColor] = useState("#FFFFFF"); // Estado para el color del mensaje
   const [buttonText, setButtonText] = useState("Iniciar el juego"); // Estado para el texto del botón
-  const [buttonColor, setButtonColor] = useState("#5dbd5d"); // Estado para el color del botón
+  const [buttonColor, setButtonColor] = useState("#7e2a93"); // Estado para el color del botón
   const [showThanksMessage, setShowThanksMessage] = useState(false); // Estado para mostrar el mensaje de agradecimiento
   const [showFelicitacionMessage, setShowFelicitacionMessage] = useState(false); // Estado para mostrar el mensaje de felicitacion
   const [resetGame, setResetGame] = useState(false);
@@ -27,43 +27,7 @@ const AFrameScene = () => {
 
   const allQuestionsAnswered = currentQuestionIndex >= questions.length;
   const currentQuestion = questions[currentQuestionIndex];
-
-  useEffect(() => {
-    const loadScript = (src) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.async = true;
-      document.body.appendChild(script);
-      return () => document.body.removeChild(script);
-    };
-    // Reproducir el audio al cargar la página
-    const audio = new Audio("../audio/superquiztv-sintonia.mp3");
-    audio
-      .play()
-      .catch((error) => console.error("Error al reproducir el audio:", error));
-
-    const sceneContainer = document.querySelector("#escena");
-    sceneContainer.setAttribute("animation", {
-      property: "rotation",
-      to: "0 180 0",
-      dur: 2000,
-    });
-
-    fetchQuestions();
-  }, [resetGame, level]); // Agregar resetGame al array de dependencias para que se vuelva a llamar cuando resetGame cambie
-
-  useEffect(() => {
-    let intervalId;
-    if (levelTimer > 0) {
-      intervalId = setInterval(() => {
-        setLevelTimer((prevTimer) => prevTimer - 1);
-      }, 1000); // Actualizar el temporizador cada segundo
-    } else if (levelTimer === 0) {
-      handleExit();
-    }
-    // Limpiar el temporizador cuando el componente se desmonte o cuando se cambie el nivel
-    return () => clearInterval(intervalId);
-  }, [levelTimer, currentQuestionIndex]);
+  let intervalId;
 
   const fetchQuestions = async () => {
     try {
@@ -90,6 +54,44 @@ const AFrameScene = () => {
     }
   };
 
+  useEffect(() => {
+    const loadScript = (src) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = true;
+      document.body.appendChild(script);
+      return () => document.body.removeChild(script);
+    };
+    // Reproducir el audio al cargar la página
+    const audio = new Audio("../audio/superquiztv-sintonia.mp3");
+    audio
+      .play()
+      .catch((error) => console.error("Error al reproducir el audio:", error));
+
+    const sceneContainer = document.querySelector("#escena");
+    sceneContainer.setAttribute("animation", {
+      property: "rotation",
+      to: "0 180 0",
+      dur: 2000,
+    });
+
+    fetchQuestions();
+    setLevelTimer(20); // Reiniciar el temporizador del nivel al cargar nuevas preguntas
+  }, [resetGame, level]); // Agregar resetGame al array de dependencias para que se vuelva a llamar cuando resetGame cambie
+
+  useEffect(() => {
+    if (levelTimer > 0 && currentQuestionIndex !== -1) {
+      // Mantener el temporizador activo mientras se está respondiendo una pregunta
+      intervalId = setInterval(() => {
+        setLevelTimer((prevTimer) => prevTimer - 1);
+      }, 1000); // Actualizar el temporizador cada segundo
+    } else if (levelTimer === 0 && currentQuestionIndex !== -1) {
+      handleExit();
+    }
+    // Limpiar el temporizador cuando el componente se desmonte o cuando se cambie el nivel
+    return () => clearInterval(intervalId);
+  }, [levelTimer, currentQuestionIndex]);
+
   // Función para iniciar el juego
   const handleStartGame = () => {
     // Cambiar el texto y el color del botón
@@ -108,7 +110,6 @@ const AFrameScene = () => {
     setMessage("");
     setQuestions("");
     setButtonText("");
-
     setShowFelicitacionMessage(false);
     setShowThanksMessage(true);
     setTimeout(() => {
@@ -117,58 +118,56 @@ const AFrameScene = () => {
       setCurrentQuestionIndex(-1);
       setScore(0);
       setLevel(1);
-      setMessage("¡Bienvenido a Super Quiz TV!");
+      setMessage("¡ Bienvenido a Super Quiz TV !");
+      setMessageColor("#FFFFFF");
       setButtonText("Iniciar el juego");
-      setButtonColor("#5dbd5d");
+      setButtonColor("#7e2a93");
       setResetGame(!resetGame); // Cambiar el estado resetGame para reiniciar el juego
     }, 1500); // La animación dura 1.5 segundos
   };
 
-  // Función para manejar la selección de una opción de respuesta
   const handleAnswer = (isCorrect) => {
     if (isCorrect) {
-      setMessage("¡Respuesta correcta!");
-      setMessageColor("#5dbd5d"); // Color verde
+      setMessage("¡ Respuesta correcta !");
+      setMessageColor("#00FF00"); // Color verde
       setScore(score + 10); // Sumar 10 puntos al marcador
-    } else {
-      setMessage("¡Respuesta incorrecta!");
-      setMessageColor("#c3203b"); // Color rojo
-    }
-    // Pasar a la siguiente pregunta después de 2 segundos
-    setTimeout(() => {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setMessage(""); // Borrar el mensaje después de 2 segundos
-    }, 3000);
-  };
 
-  useEffect(() => {
-    if (score === 20 && level < totalLevel) {
-      setLevel(level + 1); // Pasar al siguiente nivel si el marcador es mayor que 30 y no estamos en el nivel máximo
-      setScore(0); // Reiniciar el marcador
-      setLevelTimer(20);
-      setMessage("Muy Bien");
-      setButtonText(`Nivel : ${levelNumber} / ${totalLevel}`);
-    } else if (score === 20 && level === totalLevel) {
-      setMessage("");
-      setQuestions("");
-      setShowThanksMessage(false);
-      setShowFelicitacionMessage(true); // Mostrar el mensaje de felicitación
-      const audio = new Audio("../audio/aplausos-correcta.mp3");
-      audio.play();
-      setTimeout(() => {
-        // Reiniciar el estado después de la animación
+      if (score + 10 === 20 && level < totalLevel) {
+        // Detener el temporizador si el marcador llega a 20
+        clearInterval(intervalId);
+        setLevel(level + 1); // Pasar al siguiente nivel si el marcador es igual a 20 y no estamos en el nivel máximo
+        setScore(0); // Reiniciar el marcador
+        setLevelTimer(20);
+        setMessageColor("#FFFFFF");
+        setButtonColor("#7e2a93");
+        setMessage("¡Muy Bien! pasas al");
+        setButtonText(`Nivel : ${levelNumber + 1} / ${totalLevel}`);
+      } else if (score + 10 === 20 && level === totalLevel) {
+        setMessage("");
+        setQuestions("");
         setShowThanksMessage(false);
-        setShowFelicitacionMessage(false);
-        setCurrentQuestionIndex(-1);
-        setScore(0);
-        setLevel(1);
-        setMessage("¡Bienvenido a Super Quiz TV!");
-        setButtonText("Iniciar el juego");
-        setButtonColor("#5dbd5d");
-        setResetGame(!resetGame); // Cambiar el estado resetGame para reiniciar el juego
-      }, 1500); // La animación dura 1.5 segundos
+        setShowFelicitacionMessage(true); // Mostrar el mensaje de felicitación
+        const audio = new Audio("../audio/aplausos-correcta.mp3");
+        audio.play();
+        setTimeout(() => {
+          // Reiniciar el estado después de la animación
+          setShowThanksMessage(false);
+          setShowFelicitacionMessage(false);
+          setCurrentQuestionIndex(-1);
+          setScore(0);
+          setLevel(1);
+          setMessage("¡ Bienvenido a Super Quiz TV !");
+          setButtonText("Iniciar el juego");
+          setButtonColor("#7e2a93");
+          setResetGame(!resetGame); // Cambiar el estado resetGame para reiniciar el juego
+        }, 1500);
+      }
+    } else {
+      setMessage("¡ Respuesta incorrecta !");
+      setMessageColor("#FF0000"); // Color rojo
     }
-  }, [score]);
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  };
 
   return (
     <div className="aframe-container">
@@ -278,16 +277,14 @@ const AFrameScene = () => {
           animation="property: rotation; to: 0 360 0; loop: true; dur: 8000">
           </a-entity>
 
-
-
           {/* Mostrar mensaje de despedida */}
           {showThanksMessage && (
             <a-text
-              value="¡Gracias por participar y hasta la próxima!"
-              position="4 5 8.7"
+              value="Gracias por participar y hasta la próxima."
+              position="4.5 4 8.7"
               rotation="0 180 0"
               width="12"
-              color="#5dbd5d"
+              color="#FFFFFF"
               font="Roboto-Regular-msdf.json"
             ></a-text>
           )}
@@ -296,10 +293,10 @@ const AFrameScene = () => {
           {showFelicitacionMessage && (
             <a-text
               value="¡ Enhorabuena has tarminado todos los niveles !"
-              position="4 5 8.7"
+              position="5.5 5 8.7"
               rotation="0 180 0"
               width="12"
-              color="#FFD700"
+              color="#FFFFFF"
               font="Roboto-Regular-msdf.json"
             ></a-text>
           )}
@@ -309,7 +306,8 @@ const AFrameScene = () => {
               <a-text
                 font="Roboto-Regular-msdf.json"
                 value={message}
-                position="3 4.5 8.7"
+                position="0 4.5 8.7"
+                align="center"
                 rotation="0 180 0"
                 width="12"
                 color={messageColor}
@@ -340,34 +338,34 @@ const AFrameScene = () => {
               {/* Mostrar el numero de pregunta */}
               <a-text
                 value={questionCounter}
-                position="-3.1 1.5 8.7"
+                position="-3.1 1.3 8.7"
                 rotation="0 180 0"
                 width="8"
-                color="#FFF"
+                color="#FFFFFF"
                 text=""
               ></a-text>
               {/* Mostrar el nivel */}
               <a-text
                 value={levelCounter}
-                position="3 7 8.7"
+                position="3 7.3 8.7"
                 rotation="0 180 0"
                 width="8"
-                color="#FFF"
+                color="#FFFFFF"
                 text=""
               ></a-text>
               {/* Mostrar el cronometro */}
               <a-text
                 value={timer}
-                position="-2 7 8.7"
+                position="-2 7.3 8.7"
                 rotation="0 180 0"
                 width="8"
-                color="#FFF"
+                color="#FFFFFF"
                 text=""
               ></a-text>
 
               {/* Barras de progreso */}
               <a-plane
-                position="2 6.5 8.7"
+                position="2 6.8 8.7"
                 rotation="0 180 0"
                 width="3" // Ancho total de la barra
                 height="0.2"
@@ -375,15 +373,15 @@ const AFrameScene = () => {
                 material="opacity: 0.2" // Ajustar la opacidad si es necesario
               ></a-plane>
               <a-plane
-                position={`${0.5 + level / totalLevel} 6.5 8.7`}
+                position={`${0.5 + level / totalLevel} 6.8 8.7`}
                 rotation="0 180 0"
                 height="0.2"
-                color="#5dbd5d"
+                color="#00FF00"
                 width={`${(level / totalLevel) * 3}`} // Ancho ajustado según el progreso del nivel
               ></a-plane>
 
               <a-plane
-                position="-4 6.5 8.7" // Posición ajustada para que el lado izquierdo sea fijo
+                position="-4 6.8 8.7" // Posición ajustada para que el lado izquierdo sea fijo
                 rotation="0 180 0"
                 width="4" // Ancho total de la barra
                 height="0.2"
@@ -391,11 +389,11 @@ const AFrameScene = () => {
                 material="opacity: 0.2" // Ajustar la opacidad si es necesario
               ></a-plane>
               <a-plane
-                position={`${-6 + (levelTimer / 20) * 2} 6.5 8.7`}
+                position={`${-6 + (levelTimer / 20) * 2} 6.8 8.7`}
                 rotation="0 180 0"
                 width={(levelTimer / 20) * 4} // Ancho ajustado para que la barra disminuya solo por el lado izquierdo
                 height="0.2"
-                color="#FF0000" // Color de la barra de progreso
+                color="#00FF00" // Color de la barra de progreso
               ></a-plane>
 
               {/* Mostrar la pregunta y las opciones */}
@@ -406,14 +404,14 @@ const AFrameScene = () => {
                 position="0 5.5 8.7"
                 rotation="0 180 0"
                 width="10"
-                color="#7ebfcf"
+                color="#FFFFFF"
               ></a-text>
               {currentQuestion.options.map((option, index) => (
                 <React.Fragment key={index}>
                   <a-box
                     position={`0 ${4 - index * 0.7} 8.7`}
                     rotation="0 180 0"
-                    color="#6f2aa4"
+                    color="#7e2a93"
                     width="8"
                     height="0.5"
                     depth="0.1"
@@ -436,7 +434,7 @@ const AFrameScene = () => {
             <a-text
               font="Roboto-Regular-msdf.json"
               value={message}
-              position="2 1.2 8.7"
+              position="2 1 8.7"
               rotation="0 180 0"
               width="8"
               color={messageColor}
@@ -447,10 +445,10 @@ const AFrameScene = () => {
             <a-text
               font="Roboto-Regular-msdf.json"
               value={`Marcador: ${score} Puntos`}
-              position="-3 1 8.7"
+              position="-3 0.8 8.7"
               rotation="0 180 0"
               width="8"
-              color="#FFF"
+              color="#FFFFFF"
             ></a-text>
           )}
           {/* Botón para salir */}
@@ -471,7 +469,6 @@ const AFrameScene = () => {
                 position="5 1 8.64"
                 width="8"
                 align="center"
-                text=""
                 rotation="0 180 0"
               ></a-text>
             </>
