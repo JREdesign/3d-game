@@ -51,7 +51,7 @@ El stack tecnológico y herramientas utilizadas:
 <img src="https://imgur.com/eSjqtX9.png" style="width: 70%;" alt="Imagen 3">
 
 
-Proyecto: [https://github.com/JREdesign/PizzaGram](https://github.com/JREdesign/SuperQuizTV/)
+Proyecto: [https://github.com/JREdesign/SuperQuizTV](https://github.com/JREdesign/SuperQuizTV/)
 
 
 ![Static Badge](https://img.shields.io/badge/Version_SuperQuizTV-1.0-green) ![Static Badge](https://img.shields.io/badge/Version%20API-3.0-blue)
