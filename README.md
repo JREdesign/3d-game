@@ -17,7 +17,7 @@ Nuestro proyecto ha sido cuidadosamente diseñado para ofrecer una experiencia �
 - Realizada como proyecto MERN en MongoDB, Express, React y Node.js.
 - Una experiencia para disfrutar con familia y amigos
 - Interfaz intuitiva: Diseñada para ser sencilla y ágil de navegar, facilitando a los usuarios inmersionarse rapidamente en el juego.
-- CRUD completo: El usuario puede crear, modificar, borrar y editar sus recetas siempre que esté logueado con su usuario y contraseña.
+- Login y registro: El usuario puede logearse y registrarse para guardar asi sus puntuaciones.
 - Accesibilidad garantizada: Nuestro diseño cumple con los estándares de accesibilidad de la W3C, asegurando que todos los usuarios puedan disfrutar plenamente de nuestra plataforma, sin importar sus necesidades.
 - Compromiso con el medio ambiente: Desarrollada con una mentalidad sostenible, empleamos prácticas que buscan reducir las emisiones de CO2, desde la optimización de nuestros procesos hasta la selección consciente de nuestros proveedores.
 
