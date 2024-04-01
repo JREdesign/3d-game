@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate, Link } from "react-router-dom";
-import "./estilos.css";
-
-// Si la imagen está en tu proyecto, puedes importarla así:
-// import logoMini from './ruta-a-logo-mini.jpg'; // Ajusta la ruta según sea necesario
+import "../css/estilos.css";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -23,6 +20,7 @@ const Login = () => {
 
       setCookies("access_token", result.data.token, { path: "/" });
       window.localStorage.setItem("userID", result.data.userID);
+      window.localStorage.setItem("username", username); // Guarda el nombre de usuario en el almacenamiento local
       navigate("/aframe");
     } catch (error) {
       console.error("Error de login:", error);
@@ -36,9 +34,7 @@ const Login = () => {
         className="logo-container"
         style={{ textAlign: "center", marginBottom: "20px" }}
       >
-        {/* Usa el src de la imagen directamente si se encuentra en el directorio public, o usa la importación si la imagen está en tu proyecto */}
-        <img src="../imagenes/logo-mini.png" alt="Logo" />{" "}
-        {/* Ajusta src según sea necesario */}
+        <img src="../imagenes/logo-mini.png" alt="Logo" />
       </div>
       <div className="container">
         <div className="login form">
@@ -60,8 +56,7 @@ const Login = () => {
           </form>
           <div className="signup">
             <span>
-              ¿No tienes cuenta?
-              <Link to="/register"> Regístrate</Link>
+              ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
             </span>
           </div>
         </div>

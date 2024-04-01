@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import "./estilos.css";
+import "../css/estilos.css";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -52,8 +52,7 @@ const Register = () => {
           <div className="signup">
             <span>
               ¿Ya tienes cuenta?
-              {/* Usar el componente Link para la navegación interna */}
-              <Link to="/">Accede al sitio</Link>
+              <Link to="/"> Accede al sitio</Link>
             </span>
           </div>
         </div>
