@@ -50,7 +50,7 @@ El stack tecnológico y herramientas utilizadas:
 <img src="https://imgur.com/eSjqtX9.png" style="width: 70%;" alt="Imagen 3">
 
 
-Proyecto: https://github.com/JREdesign/PizzaGram
+Proyecto: [https://github.com/JREdesign/PizzaGram](https://github.com/JREdesign/SuperQuizTV/)
 
 
 ![Static Badge](https://img.shields.io/badge/Version_SuperQuizTV-1.0-green) ![Static Badge](https://img.shields.io/badge/Version%20API-3.0-blue)
@@ -58,3 +58,11 @@ Proyecto: https://github.com/JREdesign/PizzaGram
 
 
 [![GitHub Streak](https://streak-stats.demolab.com?user=JREdesign&theme=material&locale=es&date_format=j%20M%5B%20Y%5D)](https://git.io/streak-stats)
+
+Creado por: 
+https://github.com/Aarab-Mohamed
+https://github.com/EzequielPalma
+https://github.com/metaanita
+https://github.com/Panickus
+https://github.com/sergiolalu
+https://github.com/JREdesign
