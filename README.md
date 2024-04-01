@@ -60,9 +60,9 @@ Proyecto: [https://github.com/JREdesign/PizzaGram](https://github.com/JREdesign/
 [![GitHub Streak](https://streak-stats.demolab.com?user=JREdesign&theme=material&locale=es&date_format=j%20M%5B%20Y%5D)](https://git.io/streak-stats)
 
 Creado por: 
-https://github.com/Aarab-Mohamed
-https://github.com/EzequielPalma
-https://github.com/metaanita
-https://github.com/Panickus
-https://github.com/sergiolalu
-https://github.com/JREdesign
+- https://github.com/Aarab-Mohamed
+- https://github.com/EzequielPalma
+- https://github.com/metaanita
+- https://github.com/Panickus
+- https://github.com/sergiolalu
+- https://github.com/JREdesign
