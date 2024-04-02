@@ -1,0 +1,30 @@
+# Directorios de dependencias
+node_modules/
+bower_components/
+
+# Archivos de configuración de ambiente
+.env
+.env.local
+
+# Directorios de salida de compilación
+/dist
+/build
+
+# Sistema de archivos MacOS
+.DS_Store
+
+# Sistema de archivos Windows
+Thumbs.db
+
+# Editor de configuraciones
+.idea/
+*.sublime-workspace
+
+# Archivos de logs
+*.log
+
+# Directorio de cobertura
+/coverage
+
+
+git config core.autocrlf false
