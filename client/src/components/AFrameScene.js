@@ -339,7 +339,7 @@ const AFrameScene = () => {
             id="Felipe"
             scale="2 2 2"
             rotation="0 50.566 0"
-            position="-5.63886 0.12028 -9.65711"
+            position="-5 0 -3"
             animation-mixer=""
             gltf-model="https://cdn.glitch.global/8706468d-4e4a-413e-bce6-5e210b1fc903/superfelics.glb?v=1711022921561"
           ></a-entity>
